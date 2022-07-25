@@ -6,19 +6,29 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import java.util.*
+import androidx.appcompat.widget.SearchView
+
+
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var fab: FloatingActionButton
+    var recordList = emptyList<ModelRecord>()
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: AdapterRecord
+    private lateinit var searchView : SearchView
+    private lateinit var dbHelper: DatabaseHelper
 
     var dbH = DatabaseHelper(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        searchView = findViewById(R.id.search)
+
+
+
 
         fab = findViewById(R.id.addFabButton)
         recyclerView = findViewById(R.id.recyclerview_list)
@@ -29,7 +39,21 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener {
             startActivity(Intent(this, AddRecordActivity::class.java))
         }
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+                dbH.searchRecords(query = String())
+                return true
+            }
+
+        })
+
     }
+
 
     override fun onResume() {
         super.onResume()

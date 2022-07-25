@@ -9,5 +9,7 @@ class ModelRecord(
     var author: String,
     var editorial: String,
     var year: String,
+    var price: String,
+    var gender: String,
     var image: ByteArray?
 ): Serializable

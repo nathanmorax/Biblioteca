@@ -7,9 +7,11 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.graphics.Bitmap
 import android.graphics.Bitmap.CompressFormat
 import android.graphics.BitmapFactory
+import android.icu.text.Transliterator
 import android.media.Image
 import java.io.ByteArrayOutputStream
 import java.lang.Exception
+import java.sql.Blob
 
 
 class DatabaseHelper(context: Context?): SQLiteOpenHelper(
@@ -32,6 +34,8 @@ class DatabaseHelper(context: Context?): SQLiteOpenHelper(
         author: String?,
         editorial: String?,
         year: String?,
+        gender: String?,
+        price: String?,
         image: Bitmap?
     ): Long {
         val db = this.writableDatabase
@@ -41,11 +45,17 @@ class DatabaseHelper(context: Context?): SQLiteOpenHelper(
         values.put(Contants.C_AUTHOR, author)
         values.put(Contants.C_EDITORIAL, editorial)
         values.put(Contants.C_YEAR, year)
+        values.put(Contants.C_GENDER, gender)
+        values.put(Contants.C_PRICE, price)
         values.put(Contants.C_IMAGE, image?.toBlob())
 
         val id = db.insert(Contants.TABLE_NAME, null, values)
         db.close()
         return id
+    }
+
+    fun deleteBook(id :Int){
+
     }
 
     fun updateBook(book: ModelRecord) {
@@ -56,6 +66,10 @@ class DatabaseHelper(context: Context?): SQLiteOpenHelper(
         values.put(Contants.C_AUTHOR, book.author)
         values.put(Contants.C_EDITORIAL, book.editorial)
         values.put(Contants.C_YEAR, book.year)
+        values.put(Contants.C_GENDER, book.gender)
+        values.put(Contants.C_PRICE, book.price)
+
+
         values.put(Contants.C_IMAGE, book.image)
 
         db.update(Contants.TABLE_NAME, values, "${Contants.C_ID} = ${book.id}", null)
@@ -82,6 +96,8 @@ class DatabaseHelper(context: Context?): SQLiteOpenHelper(
                 ""+ cursor.getString(cursor.getColumnIndexOrThrow(Contants.C_AUTHOR)),
                     "" + cursor.getString(cursor.getColumnIndexOrThrow(Contants.C_EDITORIAL)),
                     "" + cursor.getString(cursor.getColumnIndexOrThrow(Contants.C_YEAR)),
+                    "" + cursor.getString(cursor.getColumnIndexOrThrow(Contants.C_GENDER)),
+                    "" + cursor.getString(cursor.getColumnIndexOrThrow(Contants.C_PRICE)),
                     cursor.getBlob(cursor.getColumnIndexOrThrow(Contants.C_IMAGE))
                 )
                 recordList.add(modelRecord)
@@ -106,6 +122,8 @@ class DatabaseHelper(context: Context?): SQLiteOpenHelper(
                     ""+ cursor.getString(cursor.getColumnIndexOrThrow(Contants.C_AUTHOR)),
                     "" + cursor.getString(cursor.getColumnIndexOrThrow(Contants.C_EDITORIAL)),
                     "" + cursor.getString(cursor.getColumnIndexOrThrow(Contants.C_YEAR)),
+                    "" + cursor.getString(cursor.getColumnIndexOrThrow(Contants.C_GENDER)),
+                    "" + cursor.getString(cursor.getColumnIndexOrThrow(Contants.C_PRICE)),
                     cursor.getBlob(cursor.getColumnIndexOrThrow(Contants.C_IMAGE))
                 )
                 recordList.add(modelRecord)

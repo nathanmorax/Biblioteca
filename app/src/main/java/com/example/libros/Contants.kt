@@ -13,6 +13,8 @@ object Contants {
     const val C_AUTHOR = "AUTHOR"
     const val C_EDITORIAL = "EDITORIAL"
     const val C_YEAR = "YEAR"
+    const val C_GENDER = "GENDER"
+    const val C_PRICE = "PRICE"
     const val C_IMAGE = "IMAGE"
 
 
@@ -22,5 +24,7 @@ object Contants {
             + "$C_AUTHOR TEXT,"
             + "$C_EDITORIAL TEXT,"
             + "$C_YEAR TEXT,"
+            + "$C_GENDER TEXT,"
+            + "$C_PRICE TEXT,"
             + "$C_IMAGE BLOB )")
 }

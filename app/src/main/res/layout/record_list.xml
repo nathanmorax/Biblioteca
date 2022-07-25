@@ -37,14 +37,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Title"
-                android:textSize="20sp"
+                android:textSize="30sp"
                 android:id="@+id/rTitle">
             </TextView>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Author"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 android:id="@+id/rAuthor">
 
             </TextView>
@@ -52,15 +52,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Editorial"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 android:id="@+id/rEditorial">
             </TextView>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Year"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 android:id="@+id/rYear">
+            </TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gender"
+                android:textSize="14sp"
+                android:id="@+id/rGender">
+            </TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Price"
+                android:textSize="14sp"
+                android:id="@+id/rPrice">
             </TextView>
 
         </LinearLayout>

@@ -41,12 +41,12 @@ class AddRecordActivity : AppCompatActivity() {
 
     private lateinit var dbHelper: DatabaseHelper
 
-
-
     private lateinit var pTitleEt: EditText
     private lateinit var pAuthorEt: EditText
     private lateinit var pEditorialEt: EditText
     private lateinit var pYearEt: EditText
+    private lateinit var pGenderEt: EditText
+    private lateinit var pPriceEt: EditText
     private lateinit var pImageView: ImageView
     private lateinit var addRecordButton: Button
 
@@ -79,10 +79,15 @@ class AddRecordActivity : AppCompatActivity() {
             inputDate()
         }
 
+
+
         pTitleEt = findViewById(R.id.bookTitle)
         pAuthorEt = findViewById(R.id.bookAuthor)
         pEditorialEt = findViewById(R.id.bookEditorial)
         pYearEt = findViewById(R.id.bookYear)
+        pGenderEt = findViewById(R.id.bookGender)
+        pPriceEt = findViewById(R.id.bookPrice)
+
 
         cameraProviderFuture = ProcessCameraProvider.getInstance(this)
         cameraProviderFuture.addListener(Runnable {
@@ -101,8 +106,10 @@ class AddRecordActivity : AppCompatActivity() {
         pAuthorEt.setText(book?.author)
         pEditorialEt.setText(book?.editorial)
         pYearEt.setText(book?.year)
-
+        pGenderEt.setText(book?.gender)
+        pPriceEt.setText(book?.price)
         capturedBitmap = book?.image?.toBitmap()
+
         if (capturedBitmap != null) {
             pImageView.setImageBitmap(capturedBitmap)
         } else {
@@ -114,6 +121,9 @@ class AddRecordActivity : AppCompatActivity() {
         val title = pTitleEt.text.toString().trim()
         val author = pAuthorEt.text.toString().trim()
         val editorial = pEditorialEt.text.toString().trim()
+        val gender = pGenderEt.text.toString().trim()
+        val price = pPriceEt.text.toString().trim()
+
         val year = pYearEt.text.toString().trim()
 
         if (book != null) {
@@ -121,6 +131,8 @@ class AddRecordActivity : AppCompatActivity() {
             book!!.author = author
             book!!.editorial = editorial
             book!!.year = year
+            book!!.gender = gender
+            book!!.price = price
             book!!.image = capturedBitmap?.toBlob()
 
             dbHelper.updateBook(book!!)
@@ -135,6 +147,8 @@ class AddRecordActivity : AppCompatActivity() {
                 author,
                 editorial,
                 year,
+                gender,
+                price,
                 capturedBitmap
             )
             Toast.makeText(

@@ -68,10 +68,30 @@
         android:id="@+id/bookYear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:layout_below="@id/bookEditorial"
         android:layout_marginTop="10dp"
         android:hint="Year"
-        android:layout_below="@id/bookEditorial">
+        android:padding="10dp">
+
+    </EditText>
+    <EditText
+        android:id="@+id/bookPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bookYear"
+        android:layout_marginTop="10dp"
+        android:hint="Gender"
+        android:padding="10dp">
+
+    </EditText>
+    <EditText
+        android:id="@+id/bookGender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bookPrice"
+        android:layout_marginTop="10dp"
+        android:hint="Price"
+        android:padding="10dp">
 
     </EditText>
 
@@ -79,7 +99,7 @@
         android:id="@+id/addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/bookYear"
+        android:layout_below="@id/bookGender"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
