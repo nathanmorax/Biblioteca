@@ -29,6 +29,7 @@ class AdapterRecord(): RecyclerView.Adapter<AdapterRecord.HolderRecord>() {
         var yearIv : TextView = itemView.findViewById(R.id.rYear)
         var profileIv : ImageView = itemView.findViewById(R.id.rBook)
         var edit : AppCompatImageButton = itemView.findViewById(R.id.editBtn)
+        var deleteButton : AppCompatImageButton = itemView.findViewById(R.id.deleteBtn)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderRecord {
@@ -64,7 +65,9 @@ class AdapterRecord(): RecyclerView.Adapter<AdapterRecord.HolderRecord>() {
             intent.putExtra("book", modelRecord)
             context.startActivity(intent)
         }
-
+        holder.deleteButton.setOnClickListener{
+            (context as MainActivity).deleteBook(id)
+        }
     }
 
     override fun getItemCount(): Int {

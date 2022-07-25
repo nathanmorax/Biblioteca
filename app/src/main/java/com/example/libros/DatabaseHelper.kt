@@ -33,7 +33,7 @@ class DatabaseHelper(context: Context?): SQLiteOpenHelper(
         editorial: String?,
         year: String?,
         image: Bitmap?
-        ) : Long {
+    ): Long {
         val db = this.writableDatabase
         val values = ContentValues()
 
@@ -59,6 +59,12 @@ class DatabaseHelper(context: Context?): SQLiteOpenHelper(
         values.put(Contants.C_IMAGE, book.image)
 
         db.update(Contants.TABLE_NAME, values, "${Contants.C_ID} = ${book.id}", null)
+        db.close()
+    }
+
+    fun deleteBook(id: String) {
+        val db = this.writableDatabase
+        db.delete(Contants.TABLE_NAME,"${Contants.C_ID} = ${id}", null)
         db.close()
     }
 

@@ -29,17 +29,20 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener {
             startActivity(Intent(this, AddRecordActivity::class.java))
         }
-
-
-
-
     }
-
-
 
     override fun onResume() {
         super.onResume()
+        reload()
+    }
+
+    fun reload() {
         adapter.recordList = dbH.getAllRecords()
         adapter.notifyDataSetChanged()
+    }
+
+    fun deleteBook(id: String) {
+        dbH.deleteBook(id)
+        reload()
     }
 }
